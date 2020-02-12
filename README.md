@@ -5,13 +5,10 @@
 |--src
     |--core //logic code to access the module.
     |--platform //uart api on diff platform
-    |--project //diff API for projects
-        |--BHZ1
-            |--makefile 
-            |--test.c   //test code for each project
-            |--BHZ1_def.h   //define the necessary error code and API values
-            |--BHZ1_Finger.c //implement the API based on prime.c
-    |--config.h //config both the platform and project
+|--examples //projects example
+|--doc //necessary docs
+|--tools //tools for test
+|--test //test vectors
 |--readme.md
 
 ```
@@ -19,9 +16,7 @@
 ## 2.Build
 ```
 git clone https://github.com/chesterliliang/prime-c-lib.git
-cd src
-cd project
-cd <your project> //BHZ1 for now
+
 make
 ```
 

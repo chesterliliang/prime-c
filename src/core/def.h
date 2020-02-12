@@ -68,7 +68,6 @@ typedef unsigned char UINT8;
 #include <unistd.h> //sleep
 #include <string.h> //memcpy
 #elif (_PRIME_PLATFORM== _PRIME_BIOS_SIMU_LINUX_)
-#include "../project/BHZ1/BHZ1_def.h"
 #include "../platform/bios_serial.h"
 #include <unistd.h> //sleep
 #include <string.h> //memcpy

@@ -19,5 +19,5 @@
 
 //current config
 #define _PRIME_PROJECT      _PRIME_BHZ1_     
-#define _PRIME_PLATFORM     _PRIME_BIOS_SIMU_LINUX_    //close the simu when compile the bios version
+#define _PRIME_PLATFORM     _PRIME_LINUX_    //close the simu when compile the bios version
 //#define _PRIME_PLATFORM   _PRIME_BIOS_               //open it for your build
