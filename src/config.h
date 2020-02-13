@@ -5,8 +5,6 @@
 #define _PRIME_CCORE_               3
 #define _PRIME_C51_                 4
 #define _PRIME_RENESAS_             5
-#define _PRIME_BIOS_SIMU_LINUX_     6
-#define _PRIME_BIOS_                7
 
 //Projects
 #define _PRIME_SAGE_                1
@@ -17,7 +15,5 @@
 #define _PRIME_SY_                  6
 #define _PRIME_WOOKONG_             7
 
-//current config
-#define _PRIME_PROJECT      _PRIME_BHZ1_     
+//current config   
 #define _PRIME_PLATFORM     _PRIME_LINUX_    //close the simu when compile the bios version
-//#define _PRIME_PLATFORM   _PRIME_BIOS_               //open it for your build

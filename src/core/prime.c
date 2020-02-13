@@ -192,7 +192,7 @@ UINT32 prime_getstate(void)
 
 UINT32 prime_getstatus(void)
 {
-    UINT8 data_buf[PRIME_SIMPLE_CMD_LEN] = {0};
+    UINT8 data_buf[PRIME_MAX_LEN] = {0};
     UINT16 len = 0;
     return get_response(data_buf,&len);
 }
@@ -218,6 +218,29 @@ UINT32 prime_getid(UINT32* nID)
     }
     if(len>0)
         *nID = (UINT32)response[PRIME_DATA_OFFSET];
+
+    return PRIME_OK;
+}
+
+
+UINT32 prime_verifypin(UINT8* pin, UINT32 len)
+{
+    UINT8 data_buf[PRIME_MAX_LEN] = {0};
+    UINT8 response[PRIME_SIMPLE_CMD_LEN] = { 0 };
+    UINT32 rv = 0;
+    UINT16 ilen = 0;
+
+    rv = gen_cmd(PRIME_CMD_PIN, pin, len, data_buf, &ilen);
+    if (rv)
+    {
+        return PRIME_ERROR_PARA;
+    }
+
+    rv = handle_cmd(data_buf, ilen, PRIME_DELAY_COMMON, response, 0);
+    if(rv)
+    {
+        return rv;
+    }
 
     return PRIME_OK;
 }

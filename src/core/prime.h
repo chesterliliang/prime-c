@@ -22,4 +22,6 @@ UINT32 prime_getstatus(void);
 
 UINT32 prime_getid(UINT32* nID);
 
+UINT32 prime_verifypin(UINT8* pin, UINT32 len);
+
 #endif

@@ -13,13 +13,6 @@ UINT32 prime_uart_write(
         return PRIME_OK;
     else
         return PRIME_ERROR_COMM;
-#elif (_PRIME_PLATFORM== _PRIME_BIOS_SIMU_LINUX_)
-    UINT32 rv = 0;
-    rv = SerialPort2Write(data,len);
-    if(rv==0)//rv differ from the linux api
-        return PRIME_OK;
-    else
-        return PRIME_ERROR_COMM;
 #endif
 
 }
@@ -30,18 +23,17 @@ UINT32 prime_uart_read(
 )
 {
 #if (_PRIME_PLATFORM== _PRIME_LINUX_)
-    UINT32 rv = 0;
+    int rv = 0;
     rv = uart_read(data,len);
-    if(rv>0)
+    //printf("tmp read len = %d \n", rv);
+    if(rv>0){
+       // printf("tmp OK\n");
         return PRIME_OK;
-    else
+    }   
+    else{
+       // printf("tmp err\n");
         return PRIME_ERROR_COMM;
-#elif (_PRIME_PLATFORM== _PRIME_BIOS_SIMU_LINUX_)
-    UINT32 rv = 0;
-    rv = SerialPort2Read(data,len);
-    if(rv==0)//rv differ from the linux api
-        return PRIME_OK;
-    else
-        return PRIME_ERROR_COMM;
+    }
+        
 #endif
 }

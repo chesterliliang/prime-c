@@ -6,14 +6,13 @@
 
 UINT32 enroll(UINT16 nID)
 {
-    unsigned short resdata = 0;
     unsigned int rv = 0;
     unsigned char data[256] = {0};
     int i = 0;
     printf("------test FingeEnroll!------\n");
     memset(data, 0, 256);
     rv = prime_enroll(nID);
-    printf("------rv = %d---resdata = %d---\n", rv, resdata);   
+    printf("------rv = %d---\n", rv);   
     printf("====>press finger====>\n");
     do
     {
@@ -22,8 +21,8 @@ UINT32 enroll(UINT16 nID)
         {
              continue;
         }
-
-        switch (resdata)
+        //printf("====>prime_getstatus tv %d ====>\n", rv);
+        switch (rv)
         {
 
         case PRIME_STATUS_GOOD:
@@ -32,7 +31,7 @@ UINT32 enroll(UINT16 nID)
             break;
         case PRIME_STATUS_TIMEOUT:
             printf("#####time out #####\n");
-            return resdata;
+            return PRIME_STATUS_TIMEOUT;
 #ifdef DETAIL_INFO
         case PRIME_STATUS_WAIT:
             printf("=====>press finger=====>\n");
@@ -55,47 +54,60 @@ UINT32 enroll(UINT16 nID)
 #endif 
         case PRIME_OK:
             printf("#####finish#####\n");
-            break; 
+            break;
         default:
             break;
         }
         usleep(10000);
-    } while (resdata);
-    printf("------rv = %d---resdata = %d---\n", rv, resdata);
+    } while (rv);
+    printf("------rv = %d-----\n", rv);
 
-    return resdata;
+    return 0;
 }
 
-UINT32 identify()
+void identify()
 {
-    unsigned short resdata = 0;
+    unsigned int rv = 0;
+    int i = 0;
+    UINT16 nID = 0;
+    printf("------test FingerUserIdentify!------\n");
+    rv = prime_identify();
+    printf("------rv = %d---\n", rv);   
+    printf("====>press finger====>\n");
+    do{
+        rv = prime_getstatus();
+        //printf("====>prime_getstatus tv %d ====>\n", rv);
+        switch (rv)
+        {
+            case PRIME_STATUS_MATCH:
+                printf("####matched nID=%d ####\n",nID);
+                return;
+            case PRIME_STATUS_NOT_MATCH:
+                printf("####not match####\n");
+                return;
+            case PRIME_STATUS_TIMEOUT:
+                printf("####time out####\n");
+                return;
+            default:
+                break;
+         }
+    }while(1);
+
+}
+
+void verifypin(void)
+{
     unsigned int rv = 0;
     int i = 0;
     UINT16 nID = 0;
     UINT16 score = 0;
-    printf("------test FingerUserIdentify!------\n");
-    printf("====>press finger====>\n");
-    rv = prime_identify();
-    switch (rv)
-    {
-    case PRIME_STATUS_MATCH:
-        printf("####matched nID=%d score=%d####\n",nID,score);
-        break;
-    case PRIME_STATUS_NOT_MATCH:
-        printf("####not match####\n");
-        break;
-    case PRIME_STATUS_TIMEOUT:
-        printf("####time out####\n");
-        break;
-    
-    default:
-        printf("####other errors %d####\n", resdata);
-        break;
-    }
-    return resdata;
+    printf("------verifypin!------\n");
+    rv = prime_verifypin((UINT8*)"88888888",8);
+    printf("rv = %d\n",rv);
 }
 int main(void)
 {
+    //verifypin();
     enroll(0);
     identify();
     return 0;

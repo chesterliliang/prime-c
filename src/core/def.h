@@ -39,6 +39,7 @@ typedef unsigned char UINT8;
 #define PRIME_CMD_CALIBRATE      7 
 #define PRIME_CMD_GETSTATE       0x0c 
 #define PRIME_CMD_GETID         0x0d 
+#define PRIME_CMD_PIN         0x53 
 //Error code
 #define PRIME_OK                     0
 #define PRIME_ERROR_PARA             0x80
@@ -64,7 +65,7 @@ typedef unsigned char UINT8;
 #include "../config.h"
 
 #if (_PRIME_PLATFORM== _PRIME_LINUX_)
-#include "../platform/linux_uart.h"
+#include "../platform/x_uart.h"
 #include <unistd.h> //sleep
 #include <string.h> //memcpy
 #elif (_PRIME_PLATFORM== _PRIME_BIOS_SIMU_LINUX_)

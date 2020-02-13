@@ -1,5 +1,5 @@
 prom = prime
-obj =	./src/platform/linux_uart.c \
+obj =	./src/platform/x_uart.c \
 		./src/core/crc.c \
 		./src/core/uart.c \
 		./src/core/fpa.c \
