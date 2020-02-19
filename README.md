@@ -3,8 +3,8 @@
 ```
 .
 |--src
-    |--core //logic code to access the module.
-    |--platform //uart api on diff platform
+    |--comm //read write function
+    |--platform //interface api on different platform
 |--doc //necessary docs
 |--tools //tools for test
 |--test //test vectors

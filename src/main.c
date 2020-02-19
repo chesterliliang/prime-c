@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include "src/config.h"
-#include "src/prime.h"
+#include "config.h"
+#include "prime.h"
 
 UINT32 enroll(UINT16 nID)
 {
