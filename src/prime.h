@@ -1,5 +1,6 @@
 #ifndef __PRIME_H_
 #define __PRIME_H_
+
 #include "def.h"
 
 UINT32 prime_abort(void);

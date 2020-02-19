@@ -1,12 +1,13 @@
-#include "def.h"
+#include "../def.h"
 #include "uart.h"
+#include "io.h"
 
-UINT32 prime_uart_write(
+UINT32 prime_write(
     UINT8    *data,
     UINT16    len
 )
 {
-#if (_PRIME_PLATFORM== _PRIME_LINUX_)
+#if (_PRIME_COMM== _PRIME_UART)
     UINT32 rv = 0;
     rv = uart_write(data,len);
     if(rv>0)
@@ -17,12 +18,12 @@ UINT32 prime_uart_write(
 
 }
 
-UINT32 prime_uart_read(
+UINT32 prime_read(
     UINT8    *data,
     UINT16    len
 )
 {
-#if (_PRIME_PLATFORM== _PRIME_LINUX_)
+#if (_PRIME_COMM== _PRIME_UART)
     int rv = 0;
     rv = uart_read(data,len);
     //printf("tmp read len = %d \n", rv);

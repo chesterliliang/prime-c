@@ -2,7 +2,7 @@
 #include <string.h>
 #include <assert.h>
 #include "src/config.h"
-#include "src/core/prime.h"
+#include "src/prime.h"
 
 UINT32 enroll(UINT16 nID)
 {

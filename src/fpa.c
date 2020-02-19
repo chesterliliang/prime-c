@@ -1,7 +1,8 @@
 #include "def.h"
-#include "uart.h"
 #include "crc.h"
+#include "comm/io.h"
 #include "fpa.h"
+
 
 PRIME_INTERNAL UINT32 gen_cmd(UINT8 cmd_index, UINT8* data, UINT16 data_len, UINT8* cmd, UINT16* len)
 {
@@ -44,13 +45,13 @@ PRIME_INTERNAL UINT32 handle_cmd(UINT8* cmd, UINT16 cmd_len,UINT32 delays, UINT8
 {
     UINT32 rv = 0;
     UINT16 l = 0;
-    rv = prime_uart_write(cmd, cmd_len);
+    rv = prime_write(cmd, cmd_len);
     if (rv)
         return PRIME_ERROR_COMM;
 
     usleep(delays);
 
-    rv = prime_uart_read(response, PRIME_SIMPLE_CMD_LEN);
+    rv = prime_read(response, PRIME_SIMPLE_CMD_LEN);
     if (rv)
         return PRIME_ERROR_COMM;
     //sync
@@ -62,7 +63,7 @@ PRIME_INTERNAL UINT32 handle_cmd(UINT8* cmd, UINT16 cmd_len,UINT32 delays, UINT8
     l = response[PRIME_LEN_OFFSET]*256 + response[PRIME_LEN_OFFSET+1];
     if(l>0)
     {
-        rv = prime_uart_read(response+PRIME_SIMPLE_CMD_LEN, l);
+        rv = prime_read(response+PRIME_SIMPLE_CMD_LEN, l);
         if (rv)
             return PRIME_ERROR_COMM;
     }
@@ -83,7 +84,7 @@ PRIME_INTERNAL UINT32 get_response(UINT8* response, UINT16* len)
     UINT32 rv = 0;
     usleep(PRIME_DELAY_COMMON);
     
-    rv = prime_uart_read(response, PRIME_SIMPLE_CMD_LEN);
+    rv = prime_read(response, PRIME_SIMPLE_CMD_LEN);
     if (rv)
         return PRIME_ERROR_COMM;
 
@@ -94,7 +95,7 @@ PRIME_INTERNAL UINT32 get_response(UINT8* response, UINT16* len)
     l = response[PRIME_LEN_OFFSET]*256 + response[PRIME_LEN_OFFSET+1];
     if(l>0)
     {
-        rv = prime_uart_read(response+PRIME_SIMPLE_CMD_LEN, l);
+        rv = prime_read(response+PRIME_SIMPLE_CMD_LEN, l);
         if (rv)
             return PRIME_ERROR_COMM;
     }

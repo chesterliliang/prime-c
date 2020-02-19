@@ -62,14 +62,10 @@ typedef unsigned char UINT8;
 #define PRIME_STATUS_MATCH           0x00
 #define PRIME_STATUS_NOT_MATCH       0x01
 
-#include "../config.h"
+#include "config.h"
 
 #if (_PRIME_PLATFORM== _PRIME_LINUX_)
-#include "../platform/x_uart.h"
-#include <unistd.h> //sleep
-#include <string.h> //memcpy
-#elif (_PRIME_PLATFORM== _PRIME_BIOS_SIMU_LINUX_)
-#include "../platform/bios_serial.h"
+#include "platform/x_uart.h"
 #include <unistd.h> //sleep
 #include <string.h> //memcpy
 #endif

@@ -1,9 +1,10 @@
 prom = prime
 obj =	./src/platform/x_uart.c \
-		./src/core/crc.c \
-		./src/core/uart.c \
-		./src/core/fpa.c \
-		./src/core/prime.c \
+		./src/crc.c \
+		./src/comm/uart.c \
+		./src/comm/io.c \
+		./src/fpa.c \
+		./src/prime.c \
 		./main.c
 
 $(prom): $(obj)
