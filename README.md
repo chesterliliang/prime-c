@@ -12,10 +12,18 @@
 
 ```
 
-## 2.Build
+## 2.Build and RUN
 ```
 git clone https://github.com/chesterliliang/prime-c-lib.git
 
+make
+```
+
+or if you prefer cmake
+
+```
+cd build
+cmake .
 make
 ```
 
